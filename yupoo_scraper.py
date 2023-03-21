@@ -49,7 +49,7 @@ while True:
         else:
             item["price"] = ""
         link = div.find_previous("a").get("href")
-        item["link"] = f"https://husky-reps.x.yupoo.com{link}" # Add base URL to link
+        item["link"] = f"{base_url}{link}" # Add base URL to link
         items.append(item)
     
     # Increment the page number for the next iteration
