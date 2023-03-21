@@ -1,3 +1,3 @@
 # yupoo-scraper
-this is simple python code that creates .csv file with yupoo products and links
+this is simple python code that creates .csv file with yupoo products and links.
 more functions coming soon...
