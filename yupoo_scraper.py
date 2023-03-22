@@ -4,8 +4,8 @@ import re
 import csv
 from urllib.parse import urlparse
 
-# base_url = input("Enter base URL: ")
-base_url = "https://o832club.x.yupoo.com/categories/4113534"
+base_url = input("Enter base URL: ")
+
 parsed_url = urlparse(base_url)
 url_append = f"{parsed_url.scheme}://{parsed_url.netloc}"
 https_append = "https:"
