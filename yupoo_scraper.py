@@ -23,8 +23,8 @@ while True:
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     
-    # Find all the divs with class "text_overflow album__title"
-    divs = soup.find_all("div", {"class": "text_overflow album__title"})
+    # Find all the divs with class "categories__children"
+    divs = soup.find_all("div", {"class": "categories__children"})
 
     # If we didn't find any divs, then we've reached the end of the pages
     if not divs:
@@ -35,11 +35,11 @@ while True:
     # Iterate over the divs and extract the information we want
     for div in divs:
         item = {}
-        div_text = div.text.strip()
-        if div_text:
-            item["name"] = re.sub(r"[~.\U0001f525]", "", div_text) # Remove unwanted characters from name
+        div_title = div.find("div", {"class": "text_overflow album__title"})
+        if div_title:
+            item["name"] = re.sub(r"[~.\U0001f525]", "", div_title.text.strip()) # Remove unwanted characters from name
             item["name"] = re.sub(r"\s*(?:￥|¥)\s*", "", item["name"]) # Remove CNY symbols from name
-            link = div.find_previous("a").get("href")
+            link = div_title.find_previous("a").get("href")
             item["link"] = f"{url_append}{link}" # Add URL to link
             
             # Find the corresponding img tag and add https: to its data-src attribute
